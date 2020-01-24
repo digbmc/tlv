@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>TLV Mirror</title>	
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.css">
+	<!-- <link rel="stylesheet" href="fonts/fontawesome-free-5.3.1-web/css/all.css"> -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	<script src="libraries/jquery-3.3.1.min.js"></script>
+	<script src="libraries/jquery-ui.min.js"></script>
+	<script src="libraries/popper.min.js"></script>
+	<script src="libraries/bootstrap.min.js"></script>
+	<!-- Three.js version 93 -->
+	<script src="libraries/three.js"></script>
+	<script src="libraries/FileSaver.min.js"></script>
+	<script src="libraries/STLExporter.min.js"></script>
+	<script src="libraries/TrackballControls.js"></script>
+	<script src="libraries/stats.min.js"></script>
+	<script src="libraries/STLLoader.js"></script>
+</head>
+<body>
+    <div id="welcome-modal" class="modal fade" tabindex="-1" role="dialog">
+    		<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+    				<div class="modal-header">					
+    					<h3 class="modal-title">Welcome to the Site</h3>
+    					<button type="button" class="close" data-dismiss="modal">
+    						<span aria-hidden="true">&times;</span>
+    					</button>
+    				</div>
+    				<div class="modal-body">
+    					The art and technique of casting Han-period bronze mirrors reached a peak in the so-called TLV sishen mirrors. The decoration consists of two major components: ornament and inscription. Both components comply with certain rules while leaving some room for customization and free options. This program aims to deepen the understanding of these rules and freedoms. You are asked to design a mirror by filling into the blank zones certain decorative elements listed on the left panel. Identify which elements have rules and which do not and place the selected elements in proper ways. 
+    				</div>
+    				<div class="modal-footer">
+    					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+	<div id="motif-modal" class="motif-modal modal fade" tabindex="-1" role="dialog">
+		<div id="maj-motif-modal-dialog" class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">					
+					<h3 class="modal-title">Place Your Motif</h3>
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">	
+					<h4>Placement</h4>	
+					<p>Where would you like to place this motif?</p>	
+					<div class="radio" id="place">
+
+						<label><input type="radio" name="place" class="place" value="ne"><img src="assets/icons/northeast.png" title="Northeast" data-toggle="tooltip" alt="northeast" /></label>
+						<label><input type="radio" name="place" class="place" value="se"><img src="assets/icons/southeast.png" title="Southeast" data-toggle="tooltip" alt="southeast" /></label>
+						<label><input type="radio" name="place" class="place" value="sw"><img src="assets/icons/southwest.png" title="Southwest" data-toggle="tooltip" alt="southwest"/></label>
+						<label><input type="radio" name="place" class="place" value="nw"><img src="assets/icons/northwest.png" title="Northwest" data-toggle="tooltip" alt="northwest" /></label>
+					</div>	
+					<h4>Rotation</h4>
+					<p>How should the motif be rotated?</p>
+					<br style="clear: both;" />
+					<div id="rotation" class="rotation">
+					</div>
+					<h2>Direction</h2>
+					<p>In which direction should this motif to face?</p>
+					<br style="clear: both;" />
+					<div id="direction" class="direction">
+					</div>
+					<div class="modal-footer">
+					<button id="submit" type="submit" class="btn btn-primary">Submit</button>
+				</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+	<aside id="aside">
+		<section>
+			<h2>Inscriptions <a href="#" class="btn btn-secondary info-btn" data-toggle="tooltip" title="An inscription is usually placed in a circular band that surrounds the ornament near the periphery of the mirror. The text is usually a narrative that relates auspicious events of the current regime with a strong political and ideological implication. The text usually advances in one direction and is often synchronized with the ornament."><i id="help-inscript" class="far fa-question-circle"></i></a></h2>	
+			<a href="#" class="translation" data-toggle="tooltip" title="Wang has made the mirror; the barbarians of the four directions have submitted; great congratulations to the New Dynasty [Xin]; the people have got rest; the Hu slaves (i.e. tribes of the North) are destroyed and exterminated; all people were exempt [from forced labor]; wind and rain are timely and temperate, the five kinds of grain ripen; may you long preserve your two parents; may your sons and grandsons be strong; may your official position be august and illustrious; may you receive emoluments and food; may you hand it down and thereby inform later generations; may you have joy without limit; may you have great profit!"><div class="inscript">…王氏作四夷服多新家人民息胡殄天下雨五熟保二子力官位尊蒙食告後世大利兮</div></a>
+			<!-- <br style="clear: both;" /> -->
+			<a href="#" class="translation" data-toggle="tooltip" title="The Shang-fang (imperial workshop) has made the mirror, it is greatly without blemish; a skilled artisan has engraved it and achieved a decoration; to the left the Dragon and to the right the Tiger manage the four sides (Quarters); the Red Bird and the Black Warrior make the yin and yang forces beneficial; may your sons and grandsons be complete in number and be in the center: on it are Immortals who divert themselves on high; may you long-preserve your two parents; may your joy and wealth be splendid; may your longevity be like that of metal and stone; may you become a prince or a king."><div class="inscript">…尚方作竟大毋巧工刻之成文章左右虎掌四方朱玄武利子具居中央上有仙人高敖羊保二富昌如金石侯王</div></a>	
+			<a href="#" class="translation" data-toggle="tooltip" title="The New Dynasty [has erected] a Pi-yong (Imperial college) and built a Ming-t’ang (Bright Hall, ceremonial hall); may you be illustrious among [promoted] scholars; may you be the equal of princes and kings; may your sons [and grandsons] be complete in number and govern the center."><div class="inscript">…新辟雍建明堂列於土比列侯王子服具治中央</div></a>
+		</section>
+		<br style="clear: both;" />
+		<section>
+			<h2>Major Motifs <a href="#" class="btn btn-secondary info-btn" data-toggle="tooltip" title="These include the Four Directional Gods (sishen) as the guardians of the four cardinal directions of the universe, with Green Dragon in the East, White Tiger in the West, Red Birds in the south, and Dark Warrior (tortoise-snake) in the North. They are most essential, indispensable motifs in this type of mirror and are always placed in a fixed composition and a uniform direction."><i id="help-majmotif" class="far fa-question-circle"></i></a></h2>		
+			<div class="majmot" id="greendragon"><a href="#"><img src="assets/icons/greendragon-2D.png" alt="green dragon"></a></div>
+			<div class="majmot" id="redbird"><a href="#"><img src="assets/icons/redbird-2D.png" alt="red bird"></a></div>
+			<div class="majmot" id="darkwarrior"><a href="#"><img src="assets/icons/darkwarrior-2D.png" alt=" dark warrior (turtle)"></a></div>
+			<div class="majmot" id="whitetiger"><a href="#"><img src="assets/icons/whitetiger-2D.png" alt="white tiger"></a></div>
+		</section>
+		<br style="clear: both;" />
+		<section>
+			<h2>Minor Motifs <a class="btn btn-secondary info-btn" href="#" data-toggle="tooltip" title="These include a variety of celestial creatures other than the Four Directional Gods. They are less regulated in terms of placement, but are usually placed between and to accompany the Four Directional Gods."><i id="help-minmotif" class="far fa-question-circle"></i></a></h2>
+			<div class="minmot" id="animalmotif1"><a href="#"><img src="assets/icons/animalmotif1-2D.png" alt="bird"></a></div>
+			<div class="minmot" id="animalmotif2"><a href="#"><img src="assets/icons/animalmotif2-2D.png" alt="ram"></a></div>
+			
+			<div class="minmot" id="animalmotif3"><a href="#"><img src="assets/icons/animalmotif3-2D.png" alt="bird with tail feathers"></a></div>
+			
+			<div class="minmot" id="animalmotif4"><a href="#"><img src="assets/icons/animalmotif4-2D.png" alt="frog"></a></div>
+			<!-- <br style="clear: both;" />	 -->
+			<div class="minmot" id="immortal1"><a href="#"><img src="assets/icons/immortal1-2D.png" alt="immortal"></a></div>	
+			<div class="minmot" id="immortal2"><a href="#"><img src="assets/icons/immortal2-2D.png" alt="immortal riding beast"></a></div>			
+		</section>
+		<br style="clear: both;" />
+		<section>
+			<h2>Bands <a href="#" class="btn btn-secondary info-btn" data-toggle="tooltip" title="These bands usually surround the center of the mirror. They often consist of inscriptional bands, pictorial bands, and/or geometrically ornamental bands."><i id="help-decor" class="far fa-question-circle"></i></a></h2>
+			<div class="bands"><a href="#"><img src="assets/icons/outergeometric-2D.png" id="decorativebandoutergeometric" alt="geometric band"></a>
+			</div>
+			<div class="bands"><a href="#"><img src="assets/icons/outerscroll-2D.png" id="decorativebandouterscroll" alt="decorative scroll band"></a>
+			</div>
+		</section>		
+	</aside>
+	<footer>
+		<div class="help-icons">
+			<span data-toggle="modal" data-target="#helpModal">
+				<a href="#" class="btn btn-secondary help-buttons" id="help" data-toggle="tooltip" title="Help">
+					<i class="fa fa-question"></i>
+				</a>
+			</span>
+			<a href="#" class="help-buttons btn btn-secondary" id="download" data-toggle="tooltip" title="Download">
+				<i class="fa fa-download"></i>
+			</a>
+			<a href="#" class="help-buttons btn btn-secondary" id="reset" data-toggle="tooltip" title="Reset Camera">
+				<i class="fa fa-undo"></i>
+			</a>
+			<a href="#" class="help-buttons btn btn-secondary" id="play" data-toggle="tooltip" title="Play">
+				<i class="fas fa-play"></i>
+			</a>
+			<a href="#" class="help-buttons btn btn-secondary" id="stop" data-toggle="tooltip" title="Stop">
+				<i class="fas fa-stop"></i>
+			</a>
+			<span data-toggle="modal" data-target="#creditsModal">
+				<a href="#" class="help-buttons btn btn-secondary" id="credits" data-toggle="tooltip" title="Credits">
+					<i class="fas fa-users"></i>
+				</a>
+			</span>			
+		</div>
+		<div id="helpModal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="help">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">						
+						<h3 class="modal-title">How to Create Your Mirror</h3>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						The art and technique of casting Han-period bronze mirrors reached a peak in the so-called TLV sishen mirrors. The decoration consists of two major components: ornament and inscription. Both components comply with certain rules while leaving some room for customization and free options. This program aims to deepen the understanding of these rules and freedoms. You are asked to design a mirror by filling into the blank zones certain decorative elements listed on the left panel. Identify which elements have rules and which do not and place the selected elements in proper ways. 
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="creditsModal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="credits">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title">Credits</h3>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span>
+						</button>							
+					</div>
+					<div class="modal-body">
+						This application was created by Alicia Peaker, Director of Digital Scholarship, Critical Making, and Digital Collections Management at Bryn Mawr College in collaboration with Jie Shi, Assistant Professor of History of Art, and Project Director. The mirror and its components were designed and created by Jialu Guo ('19). Nisha Choudhary ('21) helped with converting the mirror components into usable file formats. Matt Jameson (Ph.D. Candidate, Classical and Near Eastern Archaeology) consulted on the design of the application and created several <a href="https://sketchfab.com/BrynMawrCollege">3D photogrammetry models</a> of TLV mirrors that inspired its production.  
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="mirror.js"></script>
+</body>
+</html>

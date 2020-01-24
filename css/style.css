@@ -1,0 +1,132 @@
+:root {
+	--main-bg-color: #007ba7;
+}
+
+@font-face {
+	font-family: '北师大说文小篆';
+	src: url('/fonts/北师大说文小篆.ttf') format('truetype');	
+}
+
+@font-face {
+	font-family: 'SimSun';
+	src: url('/fonts/SimSun.ttf') format('truetype');
+}
+
+aside {
+	width: 31vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0 10px 10px 10px;
+	position: absolute;
+	top: 0;
+	overflow: auto;
+	z-index: 100;
+	background-color: #fff;
+}
+
+canvas {
+	width: 69vw;
+	height: 100vh;
+	background-color: black;
+	position: fixed;
+	top: 0;
+	left: 15vw;
+	margin: 0;
+	padding: 0;
+	z-index: -1;
+}
+
+a {
+	color: var(--main-bg-color);
+}
+
+.rotation label input, .direction label input, .radio label input {
+	visibility: hidden;
+	position: absolute;
+}
+.rotation img, .direction img, .radio img {
+	cursor: pointer;
+	border: 5px solid transparent;
+	width: 80px;
+}
+
+.rotation input:checked + img, .direction input:checked + img, .radio input:checked + img {
+	border: 5px solid var(--main-bg-color);
+	border-radius: 5px;
+}
+
+.btn-default, .btn-primary {
+	background-color: var(--main-bg-color);
+	color: #fff;
+}
+
+.tooltip, .tooltip-inner {
+	/*font-size: 10px !important;*/
+	text-align: left;
+	pointer-events: none;
+}
+
+.majmot,.minmot, .bands {
+	float: left;
+	margin: 2px;
+	padding: 5px;
+	max-width: 45%;	
+}
+
+.majmot img, .minmot img, .bands img {
+	width: 100%;
+}
+
+.inscript {
+	font-family: "北师大说文小篆";
+	font-size: 1.5em;
+	color: #000;
+	max-width: 45%;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: top;
+	padding-right: 4px;
+}
+
+.info-btn {
+	color: #000;
+	background-color: #fff;
+	font-size: 2.5rem;
+	border: none;	
+}
+
+.info-btn:hover {
+	background-color: #000;
+	color: #fff;
+	border: none;
+}
+
+.translation + .tooltip > .tooltip-inner {
+	text-align: left;
+}
+
+.help-icons {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	padding-right: 5px;
+	background-color: #000;
+}
+
+.help-buttons, .help-buttons:focus, .help-buttons:visited {
+	color: #fff;
+	background-color: #000;
+	border-color: #000;
+	z-index: 1000;
+	font-size: 2em;
+	text-decoration: none;
+	-webkit-appearance: none !important;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.help-buttons:hover  {
+	background-color: #fff;
+	color: #000;
+	text-decoration: none;
+}
